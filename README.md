@@ -4,7 +4,7 @@ Pollution happens. The Michigan Department of Environmental Quality (MDEQ) track
 
 The MDEQ has a [database of directories](https://www.deq.state.mi.us/aps/downloads/SRN/) containing correspondence with companies and individuals. Each folder is titled with a unique ID that is assigned to each entity by the state.
 
-![mideq-source-directories-2.png](attachment:mideq-source-directories-2.png)
+[MDEQ Source Directories](https://github.com/srjouppi/michigan-deq-doc-scraper/tree/main/screenshots)
 
 
 ## Inside the directories
@@ -12,13 +12,13 @@ The MDEQ has a [database of directories](https://www.deq.state.mi.us/aps/downloa
 -------
 Inside these directories lie a treasure trove of information--test results, evaluation reports, and **violation notices** -- for each company the MDEQ monitors or individual it has interacted with.
 
-![violation-notice-example.png](attachment:violation-notice-example.png)
+[Violation Notice Example](https://github.com/srjouppi/michigan-deq-doc-scraper/blob/main/screenshots/violation-notice-example.png)
 
 The files are for the most part named predictably, including the **unique id**, the **type of document** and the **date** it was issued.
 
 The directory URLs are predictable as well, and only require switching out the source ID.
 
-![source-directory-example.png](attachment:source-directory-example.png)
+[Source Directory Example](https://github.com/srjouppi/michigan-deq-doc-scraper/blob/main/screenshots/source-directory-example.png)
 
 ## Scraping data  for each company :chart_with_upwards_trend:
 ------
@@ -36,7 +36,7 @@ I used the MDEQ's [master list of sources](https://www.deq.state.mi.us/aps/downl
 
 `MDEQ-SRN-documents-12092021.csv`
 
-![source-documents-csv.png](attachment:source-documents-csv.png)
+[Final CSV](https://github.com/srjouppi/michigan-deq-doc-scraper/blob/main/screenshots/source-documents-csv.png)
 
 
 ```python
