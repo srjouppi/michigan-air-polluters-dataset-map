@@ -6,11 +6,17 @@ Pollution happens. The Michigan Department of Environment, Great Lakes, and Ener
 
 The EGLE's Air Quality Division has a [database of directories](https://www.deq.state.mi.us/aps/downloads/SRN/) where records for each of these sources are stored. For my final project as part of Columbia's Data & Databases course, I scraped 18,000+ PDFs from this database and created a dataset of documents--like test restults, evaluation reports, and violation notices--by date. 
 
-After converting the EGLE's list of sources of air pollution to a csv, I was able to include in my dataset who the documents were issued to and the county, zip code and address where these sources were located. 
+After converting the [EGLE's list of sources](https://www.deq.state.mi.us/aps/downloads/SRN/Sources_By_ZIP.pdf)of air pollution to a csv, I was able to include in my dataset 
+
+* who the documents were issued to and
+* the county, zip code and address where these sources are located 
 
 The project resulted in [a robust dataset](csv/EGLE-AQD-documents-sources.csv) of documents from the EGLE database and [an interactive map](docs/map.html) of air pollution violations by zip code.
 
 [Read more about the final product >>](https://github.com/srjouppi/michigan-air-pollution-dataset-map#the-final-product)
+
+#### NOTE:
+For the most up-to-date document dataset[Visit my automatic scraper](https://github.com/srjouppi/michigan-deq-auto-scraper) which searches the EGLE database daily for updates and adds them to the dataset.
 
 ![violations-map.png](https://github.com/srjouppi/michigan-air-pollution-violations-dataset-map/blob/main/screenshots/violations-map.png)
 
