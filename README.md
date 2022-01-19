@@ -1,47 +1,145 @@
 # Scraping the Michigan DEQ's Database of Correspondence with Air Polluters :factory:
 
+## Project Summary
+
 Pollution happens. The Michigan Department of Environmental Quality (MDEQ) tracks over [5,800 sources of air pollution](https://www.deq.state.mi.us/aps/downloads/SRN/Sources_By_ZIP.pdf) in the state.
 
-The MDEQ has a [database of directories](https://www.deq.state.mi.us/aps/downloads/SRN/) containing correspondence with companies and individuals. Each folder is titled with a unique ID that is assigned to each entity by the state.
+The MDEQ's Air Quality Division has a [database of directories](https://www.deq.state.mi.us/aps/downloads/SRN/) where records for each of these sources are stored. For my final project as part of Columbia's Data & Databases course, I scraped 18,000+ PDFs from this database and created a dataset of documents--like test restults, evaluation reports, and violation notices--by date. 
 
-![mideq-source-directories-2.png](attachment:mideq-source-directories-2.png)
+After converting the MDEQ's list of sources of air pollution to a csv, I was able to include in my dataset who the documents were issued to and the county, zip code and address where these sources were located. 
 
+The project resulted in [a robust dataset](csv/MDEQ-SRN-documents-sources.csv) and [an interactive map](docs/map.html) of air pollution violations by zip code.
 
-## Inside the directories
-##### The good stuff :moneybag:
+[Read more about the final product >>](https://github.com/srjouppi/michigan-air-polution-violations-dataset-map#the-final-product)
+
+![violations-map.png](https://github.com/srjouppi/michigan-air-pollution-violations-dataset-map/blob/main/screenshots/violations-map.png)
+
+## :nut_and_bolt: Process
+-----
+
+### Inside the database
+When you get the [MDEQ database](https://www.deq.state.mi.us/aps/downloads/SRN/) it looks like this:
+
+![mideq-source-directories.png](https://github.com/srjouppi/michigan-air-pollution-violations-dataset-map/blob/main/screenshots/mideq-source-directories.png)
+
+Each folder is titled with a unique ID that is assigned by the state to each source of air pollution. 
+And when you click those directories, then you get:
+
+#### The good stuff :moneybag:
 -------
 Inside these directories lie a treasure trove of information--test results, evaluation reports, and **violation notices** -- for each company the MDEQ monitors or individual it has interacted with.
 
-![violation-notice-example.png](attachment:violation-notice-example.png)
+![violation-notice-example.png](https://github.com/srjouppi/michigan-air-pollution-violations-dataset-map/blob/main/screenshots/violation-notice-example.png)
 
-The files are for the most part named predictably, including the **unique id**, the **type of document** and the **date** it was issued.
-
-The directory URLs are predictable as well, and only require switching out the source ID.
-
-![source-directory-example.png](attachment:source-directory-example.png)
-
-## Scraping data  for each company :chart_with_upwards_trend:
+### Scraping data  for each source :chart_with_upwards_trend:
 ------
 I used the MDEQ's [master list of sources](https://www.deq.state.mi.us/aps/downloads/SRN/Sources_By_ZIP.pdf) to generate a list of links of directories by inserting the source ID into the standard URL:
 
 `www.deq.state.mi.us/aps/downloads/SRN/{source_id}`
 
-:mag: Using Beautiful Soup and Regex I was able to extract the following data points from each PDF in the directory:
+The files in each directory are for the most part named predictably:
+
+`{SOURCEID}_{TYPE OF DOCUMENT}_{DATE}.pdf`
+
+[mideq-source-directory-example.png](https://github.com/srjouppi/michigan-air-pollution-violations-dataset-map/blob/main/screenshots/mideq-source-directory-example.png)
+
+:mag: I looped through the directory links and using Beautiful Soup and Regex I was able to extract the following data points from each PDF in the directory:
+
 1. The source's ID
 2. The code for the type of document *(ie 'FCE' for 'Full Compliance Evaluation' or 'VN' for 'Violation Notice')*
 3. The date the correspondence was issued
 4. The link to the pdf for future scraping
 
-:file_folder: And saved the 18,000+ results to:
+:file_folder: I saved the 18,000+ results to:
 
-`MDEQ-SRN-documents-12092021.csv`
+`MDEQ-SRN-documents.csv`
 
-![source-documents-csv.png](attachment:source-documents-csv.png)
+![source-documents-csv.png](https://github.com/srjouppi/michigan-air-pollution-violations-dataset-map/blob/main/screenshots/source-documents-csv.png)
 
+## Joining with name & location data :round_pushpin:
+-----
 
-```python
+#### 1. PDF Conversion -- Camelot
 
-```
+`source-list-pdf-to-csv.ipynb`
+
+The MDEQ's master list of sources and their location information was saved in PDF format. I used the PDF parser Camelot to create a dataframe of the 72-page table of nearly 6,000 sources of air pollution.
+
+#### 2. Data Cleaning -- Pandas
+
+`source-list-csv-cleaning.ipynb`
+
+The output from Camelot was a little wonky. Some columns were joined together, and it parsed the first page of the PDF different from the rest of the pages. It took some cleaning in Pandas.
+
+#### 3. Geolocating -- Google API
+
+`source-list-geocoding.ipynb`
+
+Longterm, I wanted to visualize where all of the violations were occuring over time. I created a list of addresses from my clean source list and looped them through a Google API request to get geolocation data.
+
+#### 4. The Great Merge -- Pandas
+
+`source-list-documents-merge.ipynb`
+
+I merged the documents I scraped from the MDEQ database with the source list (aka directory) to create a dataset of over 18,000 documents, the date they were issued, the type of document, as well as the county, zip code and geolocation of where those sources are located.
+
+## Analysis & mapping
+-----
+
+#### Exploring the MDEQ document dataset
+
+`/analysis/mdeq-document-database-analysis.ipynb`
+
+The dataset is quite robust. I did some initial analysis to show what was possible, answering questions like:
+
+* Who had the most violation notices?
+* Which zip codes and counties had the most violation notices?
+* Which zip codes and counties had the most sources of air pollution?
+* Which companies were tested most?
+* Which counties had the lowest and highest testing rate?
+
+#### Contextualizing with EPA emissions data
+
+`/analysis/epa-nei-2017-analysis.ipynb`
+
+Every three years the EPA conducts the [National Emissions Inventory.](https://www.epa.gov/air-emissions-inventories/2017-national-emissions-inventory-nei-data) I downloaded the latest data (collected 2017, released in 2020) to get some context for what Michigan air polluters were actually emitting.
+
+The dataset actually contains the same MDEQ issued source ID's, so I was able to get exact facility-level matches.
+
+It's truly fascinating, and there is _so much_ to explore in this dataset. For my final project, I only ended up using a total count of Hazardous Air Pollutants by source ID -- a very crude data point, but nonetheless contextualizing. For instance, some zip codes had very few Violation Notices but facilities that collectively emitted hundreds of Hazardous Air Pollutants.
+
+#### Contextualizing with census data
+
+`acs2019-data-cleaning.ipynb`
+
+For my final product -- a map of air pollution violations by zip code -- I wanted to include some demographic data for each zip code. I pulled race and poverty data from the Census Bureau's 2019 American Community survey.
+
+#### Visualizing air pollution violations with a map
+`violations-dataframe-map.ipynb`
+
+## The Final Product
+
+#### :gem: 1. The Master Dataset 
+
+`csv/MDEQ-SRN-documents-source-info.csv`
+A 18,000+ record dataset of documents by source name, county, zip code and location. 
+
+For the **_most up-to-date version of this dataset_** visit the output folder of [my automatic scraper](https://github.com/srjouppi/michigan-deq-auto-scraper), that searches the MDEQ database daily for updates and adds them to the datasets.
+
+![final-dataset.png](https://github.com/srjouppi/michigan-air-pollution-violations-dataset-map/blob/main/screenshots/final-dataset.png)
+
+#### :notebook: 2. The Source List
+
+`csv/MDEQ-SRN-source-list-final.csv`
+A machine readable list of sources of air pollution tracked by the MDEQ's Air Quality Division. 
+
+#### :mag_right: 3. The Map
+
+`docs/map.html`
+
+An interactive map that allows you to explore the number of air pollution violations per zip code as well as see demographic information for that zip code.
+
+I have high hopes to make this into a much more robust and useful interactive map using d3. Until then, happy exploring!
 
 
 ```python
