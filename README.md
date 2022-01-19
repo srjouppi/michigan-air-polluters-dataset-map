@@ -1,4 +1,4 @@
-# Scraping the Michigan's Database of Air Pollution Records :factory:
+# Scraping Michigan's Database of Air Pollution Records :factory:
 
 ## Project Summary
 
