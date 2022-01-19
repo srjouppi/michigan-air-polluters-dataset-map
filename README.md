@@ -11,12 +11,9 @@ After converting the [EGLE's list of sources](https://www.deq.state.mi.us/aps/do
 * who the documents were issued to and
 * the county, zip code and address where these sources are located 
 
-The project resulted in [a robust dataset](csv/EGLE-AQD-documents-sources.csv) of documents from the EGLE database and [an interactive map](docs/map.html) of air pollution violations by zip code.
+The project resulted in [a robust, continually updating dataset](https://github.com/srjouppi/michigan-deq-auto-scraper) of documents from the EGLE database and [an interactive map](docs/map.html) of air pollution violations by zip code.
 
 [Read more about the final product >>](https://github.com/srjouppi/michigan-air-pollution-dataset-map#the-final-product)
-
-#### NOTE:
-For the most up-to-date document dataset[Visit my automatic scraper](https://github.com/srjouppi/michigan-deq-auto-scraper) which searches the EGLE database daily for updates and adds them to the dataset.
 
 ![violations-map.png](https://github.com/srjouppi/michigan-air-pollution-violations-dataset-map/blob/main/screenshots/violations-map.png)
 
