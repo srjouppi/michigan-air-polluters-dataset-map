@@ -1,16 +1,16 @@
-# Scraping the Michigan DEQ's Database of Correspondence with Air Polluters :factory:
+# Scraping the Michigan's Database of Air Pollution Records :factory:
 
 ## Project Summary
 
-Pollution happens. The Michigan Department of Environmental Quality (MDEQ) tracks over [5,800 sources of air pollution](https://www.deq.state.mi.us/aps/downloads/SRN/Sources_By_ZIP.pdf) in the state.
+Pollution happens. The Michigan Department of Environment, Great Lakes, and Energy (EGLE) tracks over [5,800 sources of air pollution](https://www.deq.state.mi.us/aps/downloads/SRN/Sources_By_ZIP.pdf) in the state.
 
-The MDEQ's Air Quality Division has a [database of directories](https://www.deq.state.mi.us/aps/downloads/SRN/) where records for each of these sources are stored. For my final project as part of Columbia's Data & Databases course, I scraped 18,000+ PDFs from this database and created a dataset of documents--like test restults, evaluation reports, and violation notices--by date. 
+The EGLE's Air Quality Division has a [database of directories](https://www.deq.state.mi.us/aps/downloads/SRN/) where records for each of these sources are stored. For my final project as part of Columbia's Data & Databases course, I scraped 18,000+ PDFs from this database and created a dataset of documents--like test restults, evaluation reports, and violation notices--by date. 
 
-After converting the MDEQ's list of sources of air pollution to a csv, I was able to include in my dataset who the documents were issued to and the county, zip code and address where these sources were located. 
+After converting the EGLE's list of sources of air pollution to a csv, I was able to include in my dataset who the documents were issued to and the county, zip code and address where these sources were located. 
 
-The project resulted in [a robust dataset](csv/MDEQ-SRN-documents-sources.csv) and [an interactive map](docs/map.html) of air pollution violations by zip code.
+The project resulted in [a robust dataset](csv/EGLE-AQD-documents-sources.csv) of documents from the EGLE database and [an interactive map](docs/map.html) of air pollution violations by zip code.
 
-[Read more about the final product >>](https://github.com/srjouppi/michigan-air-polution-violations-dataset-map#the-final-product)
+[Read more about the final product >>](https://github.com/srjouppi/michigan-air-pollution-dataset-map#the-final-product)
 
 ![violations-map.png](https://github.com/srjouppi/michigan-air-pollution-violations-dataset-map/blob/main/screenshots/violations-map.png)
 
@@ -18,22 +18,22 @@ The project resulted in [a robust dataset](csv/MDEQ-SRN-documents-sources.csv) a
 -----
 
 ### Inside the database
-When you get the [MDEQ database](https://www.deq.state.mi.us/aps/downloads/SRN/) it looks like this:
+When you get the [EGLE database](https://www.deq.state.mi.us/aps/downloads/SRN/) it looks like this:
 
-![mideq-source-directories.png](https://github.com/srjouppi/michigan-air-pollution-violations-dataset-map/blob/main/screenshots/mideq-source-directories.png)
+![mideq-source-directories.png](https://github.com/srjouppi/michigan-air-pollution-dataset-map/blob/main/screenshots/egle-source-directories.png)
 
 Each folder is titled with a unique ID that is assigned by the state to each source of air pollution. 
 And when you click those directories, then you get:
 
 #### The good stuff :moneybag:
 -------
-Inside these directories lie a treasure trove of information--test results, evaluation reports, and **violation notices** -- for each company the MDEQ monitors or individual it has interacted with.
+Inside these directories lie a treasure trove of information--test results, evaluation reports, and **violation notices** -- for each company the EGLE monitors or individual it has interacted with.
 
-![violation-notice-example.png](https://github.com/srjouppi/michigan-air-pollution-violations-dataset-map/blob/main/screenshots/violation-notice-example.png)
+![violation-notice-example.png](https://github.com/srjouppi/michigan-air-pollution-dataset-map/blob/main/screenshots/violation-notice-example.png)
 
 ### Scraping data  for each source :chart_with_upwards_trend:
 ------
-I used the MDEQ's [master list of sources](https://www.deq.state.mi.us/aps/downloads/SRN/Sources_By_ZIP.pdf) to generate a list of links of directories by inserting the source ID into the standard URL:
+I used the EGLE's [master list of sources](https://www.deq.state.mi.us/aps/downloads/SRN/Sources_By_ZIP.pdf) to generate a list of links of directories by inserting the source ID into the standard URL:
 
 `www.deq.state.mi.us/aps/downloads/SRN/{source_id}`
 
@@ -41,7 +41,7 @@ The files in each directory are for the most part named predictably:
 
 `{SOURCEID}_{TYPE OF DOCUMENT}_{DATE}.pdf`
 
-[mideq-source-directory-example.png](https://github.com/srjouppi/michigan-air-pollution-violations-dataset-map/blob/main/screenshots/mideq-source-directory-example.png)
+[mideq-source-directory-example.png](https://github.com/srjouppi/michigan-air-pollution-dataset-map/blob/main/screenshots/mideq-source-directory-example.png)
 
 :mag: I looped through the directory links and using Beautiful Soup and Regex I was able to extract the following data points from each PDF in the directory:
 
@@ -52,9 +52,9 @@ The files in each directory are for the most part named predictably:
 
 :file_folder: I saved the 18,000+ results to:
 
-`MDEQ-SRN-documents.csv`
+`EGLE-AQD-documents.csv`
 
-![source-documents-csv.png](https://github.com/srjouppi/michigan-air-pollution-violations-dataset-map/blob/main/screenshots/source-documents-csv.png)
+![source-documents-csv.png](https://github.com/srjouppi/michigan-air-pollution-dataset-map/blob/main/screenshots/source-documents-csv.png)
 
 ## Joining with name & location data :round_pushpin:
 -----
@@ -63,7 +63,7 @@ The files in each directory are for the most part named predictably:
 
 `source-list-pdf-to-csv.ipynb`
 
-The MDEQ's master list of sources and their location information was saved in PDF format. I used the PDF parser Camelot to create a dataframe of the 72-page table of nearly 6,000 sources of air pollution.
+The EGLE's master list of sources and their location information was saved in PDF format. I used the PDF parser Camelot to create a dataframe of the 72-page table of nearly 6,000 sources of air pollution.
 
 #### 2. Data Cleaning -- Pandas
 
@@ -81,14 +81,14 @@ Longterm, I wanted to visualize where all of the violations were occuring over t
 
 `source-list-documents-merge.ipynb`
 
-I merged the documents I scraped from the MDEQ database with the source list (aka directory) to create a dataset of over 18,000 documents, the date they were issued, the type of document, as well as the county, zip code and geolocation of where those sources are located.
+I merged the documents I scraped from the EGLE database with the source list (aka directory) to create a dataset of over 18,000 documents, the date they were issued, the type of document, as well as the county, zip code and geolocation of where those sources are located.
 
 ## Analysis & mapping
 -----
 
-#### Exploring the MDEQ document dataset
+#### Exploring the EGLE document dataset
 
-`/analysis/mdeq-document-database-analysis.ipynb`
+`/analysis/egle-document-database-analysis.ipynb`
 
 The dataset is quite robust. I did some initial analysis to show what was possible, answering questions like:
 
@@ -104,7 +104,7 @@ The dataset is quite robust. I did some initial analysis to show what was possib
 
 Every three years the EPA conducts the [National Emissions Inventory.](https://www.epa.gov/air-emissions-inventories/2017-national-emissions-inventory-nei-data) I downloaded the latest data (collected 2017, released in 2020) to get some context for what Michigan air polluters were actually emitting.
 
-The dataset actually contains the same MDEQ issued source ID's, so I was able to get exact facility-level matches.
+The dataset actually contains the same EGLE issued source ID's, so I was able to get exact facility-level matches.
 
 It's truly fascinating, and there is _so much_ to explore in this dataset. For my final project, I only ended up using a total count of Hazardous Air Pollutants by source ID -- a very crude data point, but nonetheless contextualizing. For instance, some zip codes had very few Violation Notices but facilities that collectively emitted hundreds of Hazardous Air Pollutants.
 
@@ -121,17 +121,17 @@ For my final product -- a map of air pollution violations by zip code -- I wante
 
 #### :gem: 1. The Master Dataset 
 
-`csv/MDEQ-SRN-documents-source-info.csv`
+`csv/EGLE-AQD-documents-source-info.csv`
 A 18,000+ record dataset of documents by source name, county, zip code and location. 
 
-For the **_most up-to-date version of this dataset_** visit the output folder of [my automatic scraper](https://github.com/srjouppi/michigan-deq-auto-scraper), that searches the MDEQ database daily for updates and adds them to the datasets.
+For the **_most up-to-date version of this dataset_** visit the output folder of [my automatic scraper](https://github.com/srjouppi/michigan-deq-auto-scraper), that searches the EGLE database daily for updates and adds them to the datasets.
 
-![final-dataset.png](https://github.com/srjouppi/michigan-air-pollution-violations-dataset-map/blob/main/screenshots/final-dataset.png)
+![final-dataset.png](https://github.com/srjouppi/michigan-air-pollution-dataset-map/blob/main/screenshots/final-dataset.png)
 
 #### :notebook: 2. The Source List
 
-`csv/MDEQ-SRN-source-list-final.csv`
-A machine readable list of sources of air pollution tracked by the MDEQ's Air Quality Division. 
+`csv/EGLE-AQD-source-list-final.csv`
+A machine readable list of sources of air pollution tracked by the EGLE's Air Quality Division. 
 
 #### :mag_right: 3. The Map
 
