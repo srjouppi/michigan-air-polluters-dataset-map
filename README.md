@@ -32,7 +32,7 @@ Inside these directories lie a treasure trove of information--test results, eval
 
 ![violation-notice-example.png](https://github.com/srjouppi/michigan-air-pollution-dataset-map/blob/main/screenshots/violation-notice-example.png)
 
-### :chart_with_upwards_trend: Scraping data for each source
+## :chart_with_upwards_trend: Scraping data for each source
 
 I used the EGLE's [master list of sources](https://www.deq.state.mi.us/aps/downloads/SRN/Sources_By_ZIP.pdf) to generate a list of links of directories by inserting the source ID into the standard URL:
 
@@ -53,7 +53,7 @@ The files in each directory are for the most part named predictably:
 
 :file_folder: I saved the 18,000+ results to:
 
-`EGLE-AQD-documents.csv`
+`csv/EGLE-AQD-documents.csv`
 
 ![source-documents-csv.png](https://github.com/srjouppi/michigan-air-pollution-dataset-map/blob/main/screenshots/source-documents-csv.png)
 
@@ -116,11 +116,13 @@ For my final product -- a map of air pollution violations by zip code -- I wante
 #### Visualizing air pollution violations with a map
 `violations-dataframe-map.ipynb`
 
+
 ## The Final Product
 
 #### :gem: 1. The Master Dataset 
 
 `csv/EGLE-AQD-documents-source-info.csv`
+
 A 18,000+ record dataset of documents by source name, county, zip code and location. 
 
 For the **_most up-to-date version of this dataset_** visit the output folder of [my automatic scraper](https://github.com/srjouppi/michigan-deq-auto-scraper), that searches the EGLE database daily for updates and adds them to the datasets.
@@ -130,6 +132,7 @@ For the **_most up-to-date version of this dataset_** visit the output folder of
 #### :notebook: 2. The Source List
 
 `csv/EGLE-AQD-source-list-final.csv`
+
 A machine readable list of sources of air pollution tracked by the EGLE's Air Quality Division. 
 
 #### :mag_right: 3. The Map
