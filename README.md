@@ -18,18 +18,15 @@ The project resulted in [a robust, continually updating dataset](https://github.
 ![violations-map.png](https://github.com/srjouppi/michigan-air-pollution-violations-dataset-map/blob/main/screenshots/violations-map.png)
 
 ## :nut_and_bolt: Process
------
 
-### Inside the database
+### :moneybag: Inside the database: the good stuff
+
 When you get the [EGLE database](https://www.deq.state.mi.us/aps/downloads/SRN/) it looks like this:
 
 ![mideq-source-directories.png](https://github.com/srjouppi/michigan-air-pollution-dataset-map/blob/main/screenshots/egle-source-directories.png)
 
 Each folder is titled with a unique ID that is assigned by the state to each source of air pollution. 
 And when you click those directories, then you get:
-
-#### :moneybag: The good stuff 
--------
 
 Inside these directories lie a treasure trove of information--test results, evaluation reports, and **violation notices** -- for each company the EGLE monitors or individual it has interacted with.
 
@@ -62,7 +59,6 @@ The files in each directory are for the most part named predictably:
 ![source-documents-csv.png](https://github.com/srjouppi/michigan-air-pollution-dataset-map/blob/main/screenshots/source-documents-csv.png)
 
 ## :round_pushpin: Joining with name & location data
------
 
 #### 1. PDF Conversion -- Camelot
 
@@ -89,7 +85,6 @@ Longterm, I wanted to visualize where all of the violations were occuring over t
 I merged the documents I scraped from the EGLE database with the source list (aka directory) to create a dataset of over 18,000 documents, the date they were issued, the type of document, as well as the county, zip code and geolocation of where those sources are located.
 
 ## Analysis & mapping
------
 
 #### Exploring the EGLE document dataset
 
