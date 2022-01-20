@@ -1,4 +1,4 @@
-# Scraping Michigan's Database of Air Pollution Records :factory:
+# :factory: Scraping Michigan's Database of Air Pollution Records
 
 ## Project Summary
 
@@ -28,14 +28,16 @@ When you get the [EGLE database](https://www.deq.state.mi.us/aps/downloads/SRN/)
 Each folder is titled with a unique ID that is assigned by the state to each source of air pollution. 
 And when you click those directories, then you get:
 
-#### The good stuff :moneybag:
+#### :moneybag: The good stuff 
 -------
+
 Inside these directories lie a treasure trove of information--test results, evaluation reports, and **violation notices** -- for each company the EGLE monitors or individual it has interacted with.
 
 ![violation-notice-example.png](https://github.com/srjouppi/michigan-air-pollution-dataset-map/blob/main/screenshots/violation-notice-example.png)
 
-### Scraping data  for each source :chart_with_upwards_trend:
+### :chart_with_upwards_trend: Scraping data for each source
 ------
+
 I used the EGLE's [master list of sources](https://www.deq.state.mi.us/aps/downloads/SRN/Sources_By_ZIP.pdf) to generate a list of links of directories by inserting the source ID into the standard URL:
 
 `www.deq.state.mi.us/aps/downloads/SRN/{source_id}`
@@ -59,7 +61,7 @@ The files in each directory are for the most part named predictably:
 
 ![source-documents-csv.png](https://github.com/srjouppi/michigan-air-pollution-dataset-map/blob/main/screenshots/source-documents-csv.png)
 
-## Joining with name & location data :round_pushpin:
+## :round_pushpin: Joining with name & location data
 -----
 
 #### 1. PDF Conversion -- Camelot
