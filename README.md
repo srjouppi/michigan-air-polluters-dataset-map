@@ -23,7 +23,7 @@ The project resulted in [a robust, continually updating dataset](https://github.
 
 When you get the [EGLE database](https://www.deq.state.mi.us/aps/downloads/SRN/) it looks like this:
 
-![mideq-source-directories.png](https://github.com/srjouppi/michigan-air-pollution-dataset-map/blob/main/screenshots/egle-source-directories.png)
+![egle-source-directories.png](https://github.com/srjouppi/michigan-air-pollution-dataset-map/blob/main/screenshots/egle-source-directories.png)
 
 Each folder is titled with a unique ID that is assigned by the state to each source of air pollution. 
 And when you click those directories, then you get:
@@ -33,7 +33,6 @@ Inside these directories lie a treasure trove of information--test results, eval
 ![violation-notice-example.png](https://github.com/srjouppi/michigan-air-pollution-dataset-map/blob/main/screenshots/violation-notice-example.png)
 
 ### :chart_with_upwards_trend: Scraping data for each source
-------
 
 I used the EGLE's [master list of sources](https://www.deq.state.mi.us/aps/downloads/SRN/Sources_By_ZIP.pdf) to generate a list of links of directories by inserting the source ID into the standard URL:
 
@@ -43,7 +42,7 @@ The files in each directory are for the most part named predictably:
 
 `{SOURCEID}_{TYPE OF DOCUMENT}_{DATE}.pdf`
 
-[mideq-source-directory-example.png](https://github.com/srjouppi/michigan-air-pollution-dataset-map/blob/main/screenshots/mideq-source-directory-example.png)
+[egle-source-directory-example.png](https://github.com/srjouppi/michigan-air-pollution-dataset-map/blob/main/screenshots/egle-source-directory-example.png)
 
 :mag: I looped through the directory links and using Beautiful Soup and Regex I was able to extract the following data points from each PDF in the directory:
 
