@@ -116,6 +116,15 @@ For my final product -- a map of air pollution violations by zip code -- I wante
 #### Visualizing air pollution violations with a map
 `violations-dataframe-map.ipynb`
 
+My initial question when tackling this project was - where are the most violations taking place in the state of Michigan? Is there a connection to race or poverty level? I wanted to visualize the violations over time, perhaps by year, but needed more training in d3 to accomplish this.
+
+I decided to [map the all-time total number of violations per zip code](https://srjouppi.github.io/michigan-air-pollution-dataset-map/) and include demographic information from the American Community Survey. I grouped the data by percentage of non-White popultion. When the map first loads you can see all the data at once, but then you can select a group:
+
+* < 25% non-White
+* 25% - 50% non-White
+* Majority non-White
+
+My hypothesis -- that majority non-White zip codes would be most likely to have the most violations -- did not always line up with the data. I think that a more interesting comparison would be to categorize the zip codes by poverty level or population.
 
 ## The Final Product
 
@@ -137,9 +146,7 @@ A machine readable list of sources of air pollution tracked by the EGLE's Air Qu
 
 #### :mag_right: 3. The Map
 
-`docs/map.html`
-
-An interactive map that allows you to explore the number of air pollution violations per zip code as well as see demographic information for that zip code.
+[An interactive map](https://srjouppi.github.io/michigan-air-pollution-dataset-map/) that allows you to explore the number of air pollution violations per zip code as well as see demographic information for that zip code.
 
 I have high hopes to make this into a much more robust and useful interactive map using d3. Until then, happy exploring!
 
