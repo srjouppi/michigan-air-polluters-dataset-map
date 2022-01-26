@@ -11,11 +11,11 @@ After converting the [EGLE's list of sources](https://www.deq.state.mi.us/aps/do
 * who the documents were issued to and
 * the county, zip code and address where these sources are located 
 
-The project resulted in [a robust, continually updating dataset](https://github.com/srjouppi/michigan-deq-auto-scraper) of documents from the EGLE database and [an interactive map](docs/map.html) of air pollution violations by zip code.
+The project resulted in [a robust, continually updating dataset](https://github.com/srjouppi/michigan-deq-auto-scraper) of documents from the EGLE database and [an interactive map](docs/map.html) of violations by zip code.
 
-[Read more about the final product >>](https://github.com/srjouppi/michigan-air-pollution-dataset-map#the-final-product)
+[Read more about the final product >>](https://github.com/srjouppi/michigan-air-polluters-dataset-map#the-final-product)
 
-![violations-map.png](https://github.com/srjouppi/michigan-air-pollution-violations-dataset-map/blob/main/screenshots/violations-map.png)
+![violations-map.png](https://github.com/srjouppi/michigan-air-polluters-dataset-map/blob/main/screenshots/violations-map.png)
 
 ## :nut_and_bolt: Process
 
@@ -23,14 +23,14 @@ The project resulted in [a robust, continually updating dataset](https://github.
 
 When you get the [EGLE database](https://www.deq.state.mi.us/aps/downloads/SRN/) it looks like this:
 
-![egle-source-directories.png](https://github.com/srjouppi/michigan-air-pollution-dataset-map/blob/main/screenshots/egle-source-directories.png)
+![egle-source-directories.png](https://github.com/srjouppi/michigan-air-polluters-dataset-map/blob/main/screenshots/egle-source-directories.png)
 
 Each folder is titled with a unique ID that is assigned by the state to each source of air pollution. 
 And when you click those directories, then you get:
 
 Inside these directories lie a treasure trove of information--test results, evaluation reports, and **violation notices** -- for each company the EGLE monitors or individual it has interacted with.
 
-![violation-notice-example.png](https://github.com/srjouppi/michigan-air-pollution-dataset-map/blob/main/screenshots/violation-notice-example.png)
+![violation-notice-example.png](https://github.com/srjouppi/michigan-air-polluters-dataset-map/blob/main/screenshots/violation-notice-example.png)
 
 ## :chart_with_upwards_trend: Scraping data for each source
 
